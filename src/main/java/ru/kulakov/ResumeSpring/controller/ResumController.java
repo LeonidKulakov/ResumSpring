@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
-    @GetMapping("/mainpage")
-    public String getMainPage(Model model) {
-        model.addAttribute("title", "Главная страница");
+public class ResumController {
 
-        return "home";
+    @GetMapping
+    public String getResumPage(Model model){
+        model.addAttribute("title", "Моя страница");
+        return "resum";
     }
 }
