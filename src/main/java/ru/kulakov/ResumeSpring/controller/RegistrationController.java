@@ -1,0 +1,14 @@
+package ru.kulakov.ResumeSpring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class RegistrationController {
+    @GetMapping("/registration")
+    public String getRegistrationPage(Model model){
+        model.addAttribute("title", "Регистрация");
+        return "registration";
+    }
+}
