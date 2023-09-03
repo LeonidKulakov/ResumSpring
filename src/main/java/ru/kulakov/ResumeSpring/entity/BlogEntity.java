@@ -23,9 +23,8 @@ public class BlogEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String photo;
-    @Column(nullable = false)
+    private String nameBlog;
     private String textBlog;
     @ManyToOne
     @JoinColumn(name = "user_id")

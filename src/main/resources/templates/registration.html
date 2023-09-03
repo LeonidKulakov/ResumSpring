@@ -9,23 +9,27 @@
 
 <header th:insert="fragments/heder :: heder" data-bs-theme="dark"></header>
 
-<form id="authorization-form">
+<form id="registration-form">
     <div class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded">
         <div class="mb-3">
-            <label for="nicknameInput" class="form-label">Nickname</label>
-            <input type="text" class="form-control" id="nicknameInput" aria-describedby="emailHelp">
+            <label for="loginInput" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="loginInput" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="fioInput" class="form-label">Ф.И.О.</label>
+            <input type="text" class="form-control" id="fioInput" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="passwordInput" class="form-label">Пароль</label>
             <input type="password" class="form-control" id="passwordInput">
         </div>
-        <button type="submit" class="btn btn-primary">Авторизация</button>
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
     </div>
 </form>
 
 <footer th:insert="fragments/footer :: footer" class="text-body-secondary py-5"></footer>
 
-<script src="authorizationAction.js"></script>
+<script src="registration/registrationAction.js"></script>
 
 </body>
 </html>
