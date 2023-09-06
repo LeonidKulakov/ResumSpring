@@ -9,6 +9,6 @@ public class MainController {
     @GetMapping("/mainpage")
     public String getMainPage(Model model) {
         model.addAttribute("title", "Главная страница");
-        return "home";
+        return "home.html";
     }
 }
