@@ -1,4 +1,4 @@
-const form = document.getElementById('registration-form');
+const form = document.getElementById("registration-form");
 const loginInput = document.getElementById('loginInput');
 const fioInput = document.getElementById('fioInput');
 const passwordInput = document.getElementById('passwordInput');

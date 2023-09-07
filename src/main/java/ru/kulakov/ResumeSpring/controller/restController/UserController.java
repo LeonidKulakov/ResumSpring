@@ -1,4 +1,4 @@
-package ru.kulakov.ResumeSpring.restController;
+package ru.kulakov.ResumeSpring.controller.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
