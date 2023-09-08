@@ -11,15 +11,26 @@ import ru.kulakov.ResumeSpring.model.UserModel;
 public class ResumController {
 
     @GetMapping("/{login}")
-    public String showResumPage(Model model, @PathVariable String login){
+    public String showResumPage(Model model, @PathVariable String login) {
         model.addAttribute("title", login);
         model.addAttribute("display", "d-none");
-        return "resum";
+        return "resum.html";
     }
 
     @GetMapping("/resum/{login}")
-    public String getResumPage(Model model, @PathVariable String login){
+    public String getResumPage(Model model, @PathVariable String login) {
         model.addAttribute("title", login);
         return "resum";
+    }
+
+    @GetMapping("/addblog/{login}")
+    public String showAddBlogPage() {
+        return "addblog.html";
+    }
+
+
+    @GetMapping("/deleteblog/{login}")
+    public String showDeleteBlogPage() {
+        return "deleteblog.html";
     }
 }
