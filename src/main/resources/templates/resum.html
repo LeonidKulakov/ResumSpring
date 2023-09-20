@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"/>
@@ -10,18 +10,19 @@
 
 <header th:insert="~{fragments/heder :: heder}" data-bs-theme="dark"></header>
 
-<main>
+<main class="bg-light">
 
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light"><b>ResumBlog</b></h1>
-                <p class="lead text-body-secondary">Это сайт где Вы можете оформить свое резюме в виде набора блогов </p>
+                <p class="lead text-body-secondary">Это сайт где Вы можете оформить свое резюме в виде набора
+                    блогов </p>
                 <p th:class="${display}">
                     <!-- Кнопки редактирования страницы -->
+                    <a th:href="@{'/resum/'+${login}+'/addblog'}" class="btn btn-primary my-2">Добавить информацию</a>
+                    <a th:href="@{'/resum/'+${login}+'/deleteblog'}" class="btn btn-secondary my-2">Удалить информацию</a>
 
-                    <a href="/resum/${login}/addblog" class="btn btn-primary my-2">Добавить информацию</a>
-                    <a href="/deleteblog" class="btn btn-secondary my-2">Удалить информацию</a>
                 </p>
             </div>
         </div>
@@ -59,8 +60,6 @@
 </main>
 
 <footer th:insert="~{fragments/footer :: footer}" class="text-body-secondary py-5"></footer>
-
-
 
 </body>
 </html>

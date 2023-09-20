@@ -4,8 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import ru.kulakov.ResumeSpring.model.UserModel;
+
 
 @Controller
 public class ResumController {
@@ -23,13 +22,13 @@ public class ResumController {
         return "resum";
     }
 
-    @GetMapping("/addblog/{login}")
+    @GetMapping("/resum/{login}/addblog")
     public String showAddBlogPage() {
         return "addblog.html";
     }
 
 
-    @GetMapping("/deleteblog/{login}")
+    @GetMapping("/resum/{login}/deleteblog")
     public String showDeleteBlogPage() {
         return "deleteblog.html";
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"/>
@@ -10,7 +10,7 @@
 
 <header th:insert="~{fragments/heder::heder}" data-bs-theme="dark"></header>
 
-<form id="registration-form">
+<form id="registration-form" class="bg-light">
     <div class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded">
         <div class="mb-3">
             <label for="loginInput" class="form-label">Логин</label>
@@ -56,7 +56,8 @@
             body: JSON.stringify(data)
         });
         if (response.ok){
-           window.location.href ='/authorization';
+            const path = '/resum/' + username.value;
+           window.location.href =path;
         }else {
             console.log('Все не ок')
         }
