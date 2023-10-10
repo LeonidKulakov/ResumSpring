@@ -18,4 +18,9 @@ public class BlogService {
         blog.setUser(userRepo.findByUsername(login));
         return blogRepo.save(blog);
     }
+
+    public Iterable<BlogEntity> getAllBlogForUsername(String Username){
+        Long userId = userRepo.findByUsername(Username).getId();
+        return blogRepo.findAllByUserId(userId);
+    }
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TestController {
 
-    @GetMapping
+    @GetMapping("/{logon}/{id}")
     public String test(Model model){
         model.addAttribute("title","test");
         return "blog.html";

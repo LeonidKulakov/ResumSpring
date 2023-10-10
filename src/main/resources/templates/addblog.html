@@ -34,38 +34,5 @@
 
 <footer th:insert="~{fragments/footer :: footer}" class="text-body-secondary py-5"></footer>
 
-<script>
-  const form = document.getElementById("registration-form");
-  form.addEventListener('submit', getFormValueAndPOST);
-
-  function getFormValueAndPOST(e) {
-    e.preventDefault();
-    const username = form.querySelector('[name="username"]'),
-            fio = form.querySelector('[name="fio"]'),
-            password = form.querySelector('[name="password"]');
-    postData('/user', username,fio,password);
-  }
-
-  const postData = async (url = '', username,fio,password) => {
-    const data = {
-      username: username.value,
-      fio: fio.value,
-      password: password.value
-    }
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    if (response.ok){
-      window.location.href ='/authorization';
-    }else {
-      console.log('Все не ок')
-    }
-  }
-</script>
-
 </body>
 </html>
