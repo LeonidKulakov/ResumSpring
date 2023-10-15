@@ -1,4 +1,4 @@
-package ru.kulakov.ResumeSpring.controller.restController;
+package ru.kulakov.ResumeSpring.controllers.restControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kulakov.ResumeSpring.entity.UserEntity;
-import ru.kulakov.ResumeSpring.service.UserService;
+import ru.kulakov.ResumeSpring.services.UserService;
 
 @RestController
 @RequestMapping("/user")

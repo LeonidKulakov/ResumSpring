@@ -1,4 +1,4 @@
-package ru.kulakov.ResumeSpring.model;
+package ru.kulakov.ResumeSpring.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

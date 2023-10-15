@@ -1,4 +1,4 @@
-package ru.kulakov.ResumeSpring.repo;
+package ru.kulakov.ResumeSpring.repos;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

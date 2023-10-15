@@ -1,11 +1,11 @@
-package ru.kulakov.ResumeSpring.controller;
+package ru.kulakov.ResumeSpring.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ru.kulakov.ResumeSpring.service.BlogService;
+import ru.kulakov.ResumeSpring.services.BlogService;
 
 
 @Controller

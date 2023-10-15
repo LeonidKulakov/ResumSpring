@@ -1,4 +1,4 @@
-package ru.kulakov.ResumeSpring.controller;
+package ru.kulakov.ResumeSpring.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
