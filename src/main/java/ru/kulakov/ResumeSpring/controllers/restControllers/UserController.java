@@ -23,6 +23,7 @@ public class UserController {
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+
         }
     }
 }

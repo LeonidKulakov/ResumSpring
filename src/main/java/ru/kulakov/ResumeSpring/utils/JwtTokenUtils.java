@@ -18,8 +18,9 @@ import java.util.Map;
 public class JwtTokenUtils {
     @Value("@{jwt.secret}")
     private String secret;
-    @Value("@{jwt.lifetime}")
-    private Duration lifetime;
+   // @Value("@{jwt.lifetime}")
+    //todo говнокод, переделать
+    private Duration lifetime = Duration.ofMinutes(25);
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();

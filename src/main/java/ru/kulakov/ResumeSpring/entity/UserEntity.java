@@ -30,11 +30,11 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String username;
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String fio;
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String password;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<BlogEntity> blogs;

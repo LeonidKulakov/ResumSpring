@@ -56,7 +56,8 @@
             body: JSON.stringify(data)
         });
         if (response.ok){
-            const path = '/resum/' + username.value;
+           // const path = '/resum/' + username.value;
+            const path = '/authorization';
            window.location.href =path;
         }else {
             console.log('Все не ок')

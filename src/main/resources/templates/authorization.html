@@ -13,12 +13,12 @@
 <form id="authorization-form" class="bg-light">
     <div class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded">
         <div class="mb-3">
-            <label for="loginInput" class="form-label">Nickname</label>
-            <input type="text" class="form-control" id="loginInput" aria-describedby="emailHelp">
+            <label for="loginInput" class="form-label" >Nickname</label>
+            <input type="text" class="form-control" id="loginInput" aria-describedby="emailHelp" name="username">
         </div>
         <div class="mb-3">
             <label for="passwordInput" class="form-label">Пароль</label>
-            <input type="password" class="form-control" id="passwordInput">
+            <input type="password" class="form-control" id="passwordInput" name="password">
         </div>
         <button type="submit" class="btn btn-primary">Авторизация</button>
     </div>
@@ -26,7 +26,40 @@
 
 <footer th:insert="~{fragments/footer :: footer}" class="text-body-secondary py-5"></footer>
 
-<script src="authorization/authorizationAction.js"></script>
+<script>
+
+    const form = document.getElementById("authorization-form");
+    form.addEventListener('submit', getFormValueAndPOST);
+
+    function getFormValueAndPOST(e) {
+        e.preventDefault();
+        const username = form.querySelector('[name="username"]'),
+            password = form.querySelector('[name="password"]');
+        postData('/auth', username,password);
+    }
+
+    const postData = async (url = '', username,password) => {
+        const data = {
+            username: username.value,
+            password: password.value
+        }
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if (response.ok){
+            // const path = '/resum/' + username.value;
+            const path = '/mainpage';
+            window.location.href =path;
+        }else {
+            console.log('Все не ок')
+        }
+    }
+
+</script>
 
 </body>
 </html>

@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kulakov.ResumeSpring.entity.UserEntity;
@@ -23,22 +25,30 @@ public class UserService implements UserDetailsService {
     @Autowired
     private RoleRepo roleRepo;
 
-    public Optional<UserEntity> findByUsername(String username){
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public Optional<UserEntity> findByUsername(String username) {
         return userRepo.findByUsername(username);
     }
+
     public UserEntity registration(UserEntity user) throws Exception {
         //todo сделать ошибку
         if (userRepo.findByUsername(user.getUsername()).isPresent()) throw new Exception("Такой пользователь уже есть");
+        // тут ломается
         user.setRoles(List.of(
                 //todo сделать ошибку
                 roleRepo.findByName("USER_ROLE").orElseThrow()
         ));
+
+        String tmp = passwordEncoder.encode(user.getPassword());
+        user.setPassword(tmp);
         return userRepo.save(user);
     }
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username)  {
+    public UserDetails loadUserByUsername(String username) {
         try {
             UserEntity user = findByUsername(username)
                     .orElseThrow(() -> new UserNotFoundException("Такой пользователь не существует"));
