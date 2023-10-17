@@ -35,7 +35,8 @@ public class ResumController {
 
 
     @GetMapping("/resum/{login}/deleteblog")
-    public String showDeleteBlogPage() {
+    public String showDeleteBlogPage(Model model, @PathVariable String login) {
+        model.addAttribute("login",login);
         return "deleteblog.html";
     }
 }

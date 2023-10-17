@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserModel {
+public class BlogModel {
 
-    private String login;
-    private String password;
+    private String nameBlog;
 }

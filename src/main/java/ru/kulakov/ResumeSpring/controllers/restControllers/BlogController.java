@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kulakov.ResumeSpring.entity.BlogEntity;
+import ru.kulakov.ResumeSpring.models.BlogModel;
 import ru.kulakov.ResumeSpring.services.BlogService;
 
 @RestController
@@ -18,19 +19,24 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
-    @PostMapping
-    public ResponseEntity addBlog(@PathVariable String login, @RequestBody BlogEntity blog) {
+    @PostMapping("/resum/{login}/add_blog")
+    public ResponseEntity addBlog(@PathVariable String username, @RequestBody BlogEntity blog) {
         try {
-            blogService.addBlog(login, blog);
+            blogService.addBlog(username, blog);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Не удалось добавить блог");
         }
     }
-//    @DeleteMapping
-//    public ResponseEntity deleteBlog(@PathVariable String login, @RequestParam String nameBlog){
-//
-//    }
+    @PostMapping("/resum/{login}/delete_blog")
+    public ResponseEntity deleteBlog(@PathVariable String username, @RequestBody BlogModel blogModel){
+        try {
+            blogService.deleteBlog(username, blogModel);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Не удалось удалить блог");
+        }
+    }
 
 
 }
