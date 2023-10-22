@@ -33,19 +33,31 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwt = null;
 
+        System.out.println("JwtRequestFilter authHeader " + authHeader);
+
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             jwt = authHeader.substring(7);
-
             try {
+
+                System.out.println("JwtRequestFilter 1" + jwt);
+
                 username = jwtTokenUtils.getUsername(jwt);
+
+                System.out.println("JwtRequestFilter 1");
+
             } catch (ExpiredJwtException e) {
                 log.debug("Время жизни токена закончилось");
             } catch (SignatureException e) {
+
+                System.out.println("JwtRequestFilter 3");
+
                 log.debug("Подпись не верна");
             }
         }
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+        System.out.println(username + " username JwtRequestFilter");
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     username,
                     null,
@@ -56,6 +68,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(token);
         }
 
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 }

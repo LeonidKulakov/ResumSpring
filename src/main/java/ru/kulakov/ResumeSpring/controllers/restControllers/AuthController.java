@@ -43,6 +43,7 @@ public class AuthController {
 
         UserDetails userDetails = userService.loadUserByUsername(jwtRequest.getUsername());
         String token = jwtTokenUtils.generateToken(userDetails);
+        System.out.println("AuthController я тут");
         return ResponseEntity.ok(new JwtResponse(token));
 
     }

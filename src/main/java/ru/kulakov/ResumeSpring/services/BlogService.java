@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.kulakov.ResumeSpring.entity.BlogEntity;
 import ru.kulakov.ResumeSpring.exception.BlogNotFoundException;
 import ru.kulakov.ResumeSpring.exception.UserNotFoundException;
-import ru.kulakov.ResumeSpring.models.BlogModel;
+import ru.kulakov.ResumeSpring.models.DeleteBlogModel;
 import ru.kulakov.ResumeSpring.repos.BlogRepo;
 import ru.kulakov.ResumeSpring.repos.UserRepo;
-
-import java.util.List;
 
 @Service
 public class BlogService {
@@ -44,14 +42,13 @@ public class BlogService {
         }
     }
 
-    public void deleteBlog(String username, BlogModel blogModel) throws BlogNotFoundException {
-        for (BlogEntity blog : getAllBlogForUsername(username)) {
-            if (blog.getNameBlog().equals(blogModel.getNameBlog())) {
-                blogRepo.delete(blog);
-                return;
-            }
-        }
-        throw new BlogNotFoundException("Блог не найден");
+    public void deleteBlog(String username, DeleteBlogModel blogModel) throws UserNotFoundException, BlogNotFoundException {
+        blogRepo.delete(blogRepo
+                .findByNameBlogAndUserId(
+                        blogModel.getNameBlog(),
+                        userRepo.findByUsername(username)
+                                .orElseThrow(() -> new UserNotFoundException("Пользователь не найден"))
+                                .getId()
+                ).orElseThrow(() -> new BlogNotFoundException("Блог не найден")));
     }
-
 }

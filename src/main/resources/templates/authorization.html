@@ -13,7 +13,7 @@
 <form id="authorization-form" class="bg-light">
     <div class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded">
         <div class="mb-3">
-            <label for="loginInput" class="form-label" >Nickname</label>
+            <label for="loginInput" class="form-label">Nickname</label>
             <input type="text" class="form-control" id="loginInput" aria-describedby="emailHelp" name="username">
         </div>
         <div class="mb-3">
@@ -35,10 +35,10 @@
         e.preventDefault();
         const username = form.querySelector('[name="username"]'),
             password = form.querySelector('[name="password"]');
-        postData('/auth', username,password);
+        postData('/auth', username, password);
     }
 
-    const postData = async (url = '', username,password) => {
+    const postData = async (url, username, password) => {
         const data = {
             username: username.value,
             password: password.value
@@ -50,14 +50,34 @@
             },
             body: JSON.stringify(data)
         });
-        if (response.ok){
+        if (response.ok) {
+            response.json().then((data) => document.cookie = "jwtToken=" + data.token + ";");
+            const cookie = document.cookie;
+            let jwtToken = null;
+            for (const cook of cookie.split(";")) {
+                const [name, value] = cook.split("=");
+                if (name === "jwtToken") {
+                    jwtToken = value;
+                    break;
+                }
+            }
+            const tmpPath = "/resum/" + username.value;
+            const token = jwtToken;
+            console.log(jwtToken);
+            const userPage = await fetch(tmpPath, {
+                method: 'GET',
+                headers: {
+                    Authorization: jwtToken,
+                }
+            });
             // const path = '/resum/' + username.value;
-            const path = '/mainpage';
-            window.location.href =path;
-        }else {
+            // const path = '/mainpage';
+            // window.location.href =path;
+        } else {
             console.log('Все не ок')
         }
     }
+
 
 </script>
 

@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kulakov.ResumeSpring.entity.BlogEntity;
-import ru.kulakov.ResumeSpring.models.BlogModel;
+import ru.kulakov.ResumeSpring.models.DeleteBlogModel;
 import ru.kulakov.ResumeSpring.services.BlogService;
 
 @RestController
-@RequestMapping("/resum/{login}/blog")
 public class BlogController {
 
     @Autowired
@@ -29,7 +28,7 @@ public class BlogController {
         }
     }
     @PostMapping("/resum/{login}/delete_blog")
-    public ResponseEntity deleteBlog(@PathVariable String username, @RequestBody BlogModel blogModel){
+    public ResponseEntity deleteBlog(@PathVariable String username, @RequestBody DeleteBlogModel blogModel){
         try {
             blogService.deleteBlog(username, blogModel);
             return new ResponseEntity(HttpStatus.OK);

@@ -36,7 +36,6 @@
         e.preventDefault();
         const nameBlog = form.querySelector('[name="nameBlog"]');
         const path = '/resum/' + form.querySelector('[name="login"]').textContent + '/delete_blog';
-        console.log(path);
         postData(path, nameBlog);
     }
 
